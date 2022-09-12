@@ -3,18 +3,27 @@ import pandas as pd
 
 df = pd.read_csv("data.csv")
 
+#not in Notebook
+df.columns = df.columns.str.lower().str.replace(' ', '_')
+string_columns = list(df.dtypes[df.dtypes == 'object'].index)
+
+for col in string_columns:
+    df[col] = df[col].str.lower().str.replace(' ', '_')
+
+#not in Notebook
+
 #Q1
-np.__version__
+print(np.__version__)
 #Q2
-df.shape[0]
+print(df.shape[0])
 #or
-len(df.index())
+print(len(df.index()))
 #Q3
-df['make'].value_counts().head(3)
+print(df['make'].value_counts().head(3))
 #Q4
-len(df.loc[df['make'] == "audi"]["model"].value_counts())
+print(len(df.loc[df['make'] == "audi"]["model"].value_counts()))
 #Q5
-df.isnull().sum() #más o menos
+df.isnull().any()
 #Q6.
 #median
 df['engine_cylinders'].median()
