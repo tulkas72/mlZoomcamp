@@ -17,7 +17,7 @@ print(np.__version__)
 #Q2
 print(df.shape[0])
 #or
-print(len(df.index()))
+print(len(df.index))
 #Q3
 print(df['make'].value_counts().head(3))
 #Q4
@@ -26,11 +26,12 @@ print(len(df.loc[df['make'] == "audi"]["model"].value_counts()))
 df.isnull().any()
 #Q6.
 #median
-df['engine_cylinders'].median()
+print(f"Median before changes: {df['engine_cylinders'].median()}")
 #most frequent
-df['engine_cylinders'].mode()
+print(f"Most frequente value (mode): {df['engine_cylinders'].mode()}")
 result = df['engine_cylinders'].fillna(df['engine_cylinders'].mode().iloc[0])
-result.median()
+print(f"Median after changes: {result.median()}")
+
 #Q7
 lotus=df[['engine_hp','engine_cylinders']][df['make']=="lotus"]
 lotus=lotus.drop_duplicates()
@@ -41,3 +42,5 @@ XTXI = np.linalg.inv(XTX)
 y = np.array([1100, 800, 750, 850, 1300, 1000, 1000, 1300, 800])
 
 res = XTXI @ X.T @ y
+
+print(f"XTXI*X.T*y[0] = {res[0]}")
